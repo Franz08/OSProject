@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    @include('includes.message-block')
     <section class = "row new-post">
         <div class = "col-md-6 col-md-offset-3">
             <header><h3>What do you want to say?</h3></header>
@@ -18,36 +19,20 @@
     <section class = "row posts">
         <div class = "col-md-6 col-md-offset-3">
             <header><h3>What other people say...</h3></header>
-                <article class = "post">
-                        <p>lorem ipssssssssssssssssssuuuuuuum</p>
-                    <div class = "info">
-                        <p>Posted by: lorem ipsum</p>
-                    </div>
-                    <div class = "interaction">
-                        <a href = "#"> Like </a>
-                        <a href = "#"> Dislike</a>
-                        <a href = "#"> Edit</a>
-                        <a href = "#"> Delete</a>
-                    </div>
-                </article>
-        </div>
-    </section>
-
-    <section class = "row posts">
-        <div class = "col-md-6 col-md-offset-3">
-            <header><h3>What other people say...</h3></header>
-            <article class = "post">
-                <p>lorem ipssssssssssssssssssuuuuuuum</p>
-                <div class = "info">
-                    <p>Posted by: lorem ipsum</p>
-                </div>
-                <div class = "interaction">
-                    <a href = "#"> Like </a>
-                    <a href = "#"> Dislike</a>
-                    <a href = "#"> Edit</a>
-                    <a href = "#"> Delete</a>
-                </div>
-            </article>
+                @foreach($posts as $post)
+                    <article class = "post">
+                        <p>{{$post->body}}</p>
+                        <div class = "info">
+                            <p>Posted by: {{$post->user->firstname}} on </p>
+                        </div>
+                        <div class = "interaction">
+                            <a href = "#"> Like </a>
+                            <a href = "#"> Dislike</a>
+                            <a href = "#"> Edit</a>
+                            <a href = "#"> Delete</a>
+                        </div>
+                    </article>
+                @endforeach
         </div>
     </section>
 @endsection
